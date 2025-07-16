@@ -10,7 +10,7 @@ This project is a full-stack Spotify-inspired music platform that lets users exp
 - Upload, stream, and manage music files
 - Support for DASH-segmented audio in multiple bitrates (32k, 64k, 128k)
 - Audio uploads auto-convert from `.webm` to `.opus` with bitrate segmentation
-- Metadata like title, artist, genre fetched from Spotify using the Spotify Web API
+- Metadata like title, artist, genre fetched from Genius lyrics using the genious public API
 
 ### 🧠 AI/ML-Powered Features *(In Progress)*
 - **Lyrics Search via Transliteration**: Allows users to search for songs using phonetic English versions of lyrics (Bengali, Hindi, etc.)
@@ -31,7 +31,7 @@ This project is a full-stack Spotify-inspired music platform that lets users exp
 
 | Layer      | Tools Used                             |
 |-----------|------------------------------------------|
-| Frontend  | *TBD (React Native or Web, not part of this repo yet)* |
+| Frontend  | *TBD (Flutter or Web, not part of this repo yet)* |
 | Backend   | Node.js, Express.js, Prisma, PostgreSQL (via Supabase) |
 | ML / AI   | PyTorch (PINN for PDE solving), Voice models (planned) |
 | Audio     | FFmpeg for conversion, MPEG-DASH for adaptive streaming |
