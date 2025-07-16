@@ -1,0 +1,76 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model user {
+  id                        String           @id @default(uuid())
+  email                     String           @unique
+  phone                     String?          @unique
+  password                  String
+  username                  String           @default("Random 2025")
+  profileImagelink          String?          @unique
+  birthYear                 Int?
+  gender                    String?
+  language                  String           @default("Hindi, English")
+  location                  String?
+  payment                   Boolean          @default(false)
+  approvedForSongUpload     Boolean          @default(false)
+  createdAt                 DateTime         @default(now())
+  updatedAt                 DateTime         @updatedAt
+
+  devices                   deviceList[]
+  blacklistedDevices        deviceIdBlacklist[]
+
+}
+
+model deviceList {
+  id             String    @id @default(uuid())
+  userId         String
+
+  user           user      @relation(fields: [userId], references: [id])
+
+  deviceName     String?
+  deviceId       String?
+  secretKey      String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@unique([userId, deviceId])
+}
+
+model deviceIdBlacklist {
+  id         String    @id @default(uuid())
+  userId     String
+  deviceId   String
+  createdAt  DateTime  @default(now())
+
+  user       user      @relation(fields: [userId], references: [id])
+}
+
+model searchBlacklist{
+  id                      Int                                  @id                       @default(autoincrement())
+  words                   String?                              @unique
+  createdAt               DateTime                             @default(now())
+  updatedAt               DateTime                             @updatedAt
+}
+
+model userEmailBlacklist{
+  id                      Int                                  @id                      @default(autoincrement())
+  emails                  String?                              @unique
+  createdAt               DateTime                             @default(now())
+  updatedAt               DateTime                             @updatedAt
+}
+
+model userPasswordBlacklist{
+  id                      Int                                  @id                      @default(autoincrement())
+  passwords               String?                              @unique
+  createdAt               DateTime                             @default(now())
+  updatedAt               DateTime                             @updatedAt
+}
