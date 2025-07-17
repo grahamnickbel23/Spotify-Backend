@@ -100,8 +100,10 @@ export default class songUpload {
         const awsInfo = await AWSService.uploadSingleFileToAWS(thumbnailBucket, tempFile);
 
         // delete temp & original file
-        await ffmpegService.deleteFile(filepath);
-        await ffmpegService.deleteFile(tempFile);
+        await Promise.all([
+          ffmpegService.deleteFile(filepath),
+          ffmpegService.deleteFile(tempFile)
+        ])
 
         // return aws link
         return awsInfo

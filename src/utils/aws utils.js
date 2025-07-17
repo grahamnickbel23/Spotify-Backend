@@ -74,11 +74,15 @@ export default class AWSService {
         };
     }
 
-    // function to update stuff to aws
+    // function to update stuff to aws (folder)
     static async updateAWS(bucket, folderPath) {
         return await this.uploadAWS(bucket, folderPath)
     }
 
+    // function to update file to aws
+    static async updateFileAws(bucket, filePath){
+        return await this.uploadSingleFileToAWS(bucket, filePath);
+    }
     // download stuff from aws
     static async downloadAws(bucketName, awsFolderPath, localPath) {
 

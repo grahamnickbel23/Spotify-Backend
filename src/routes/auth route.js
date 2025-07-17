@@ -17,6 +17,7 @@ route.put('/password', asymcHandeller(editAuth.editPassword, 'updating password'
 
 // update user details
 route.put('/username', asymcHandeller(editUserDetails.editUsername, 'updating username'));
+route.put('/profilepic', asymcHandeller(editUserDetails.editProfileImage, 'updating profile image'))
 route.put('/birthyear', asymcHandeller(editUserDetails.editBirthyear, 'updating birth year details'));
 route.put('/gender', asymcHandeller(editUserDetails.editGender, 'updating gender'));
 route.put('/language', asymcHandeller(editUserDetails.editLanguage, 'updating language prefarance'));
