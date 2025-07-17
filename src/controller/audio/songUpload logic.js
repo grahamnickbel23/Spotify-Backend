@@ -97,7 +97,7 @@ export default class songUpload {
 
         // aws upload
         const thumbnailBucket = process.env.THUMBNAIL_BUCKET;
-        const awsInfo = await AWSService.uploadAWS(thumbnailBucket, tempFile);
+        const awsInfo = await AWSService.uploadSingleFileToAWS(thumbnailBucket, tempFile);
 
         // delete temp & original file
         await ffmpegService.deleteFile(filepath);
@@ -121,7 +121,7 @@ export default class songUpload {
       const audioBucket = process.env.AUDIO_BUCKET;
 
       // upload to aws 
-      const awsInfo = await AWSService.uploadSingleFileToAWS(audioBucket, folderPath);
+      const awsInfo = await AWSService.uploadAWS(audioBucket, folderPath);
       // retuen aws info (also contain link)
       return awsInfo;
 
