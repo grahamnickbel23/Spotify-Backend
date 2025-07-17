@@ -3,6 +3,7 @@ import userAuth from "../controller/auth/auth logic.js";
 import editAuth from "../controller/auth/editAuth logic.js";
 import editUserDetails from "../controller/auth/editUserdetails logic.js";
 import express from 'express'
+import upload from "../controller/audio/multer logic.js";
 
 const route = express.Router();
 
@@ -17,7 +18,7 @@ route.put('/password', asymcHandeller(editAuth.editPassword, 'updating password'
 
 // update user details
 route.put('/username', asymcHandeller(editUserDetails.editUsername, 'updating username'));
-route.put('/profilepic', asymcHandeller(editUserDetails.editProfileImage, 'updating profile image'))
+route.put('/profilepic', upload.single('profilePic'), asymcHandeller(editUserDetails.editProfileImage, 'updating profile image'))
 route.put('/birthyear', asymcHandeller(editUserDetails.editBirthyear, 'updating birth year details'));
 route.put('/gender', asymcHandeller(editUserDetails.editGender, 'updating gender'));
 route.put('/language', asymcHandeller(editUserDetails.editLanguage, 'updating language prefarance'));
