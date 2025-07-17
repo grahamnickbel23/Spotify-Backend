@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import audioUpload from './src/routes/audio route.js';
 import connectDB from './connectMongoDB.js';
+// redis need to be imported here
 import { awsS3Connect } from './connectAWS.js'; // ✅ renamed import
 import path from 'path';
 
@@ -18,6 +19,8 @@ app.use(cors());
 
 // connect mongo
 connectDB();
+// connect Redis
+
 
 // ✅ AWS connect test log (optional)
 awsS3Connect();
